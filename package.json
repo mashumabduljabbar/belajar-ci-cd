@@ -1,0 +1,19 @@
+{
+  "name": "Belajar CI CD",
+  "version": "1.0.0",
+  "description": "Belajar membuat Docker di GHCR",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Penulis Proyek Anda",
+  "license": "MIT"
+}
