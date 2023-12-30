@@ -8,13 +8,11 @@
   },
   "dependencies": {
     "express": "^4.17.1"
-    // Anda bisa menambahkan dependensi lainnya di sini
   },
   "devDependencies": {},
   "keywords": [
     "node",
     "express"
-    // Tambahkan kata kunci proyek Anda di sini
   ],
   "author": "Penulis Proyek Anda",
   "license": "MIT"
