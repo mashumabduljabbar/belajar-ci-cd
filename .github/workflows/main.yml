@@ -36,4 +36,4 @@ jobs:
           context: .
           push: true
           labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ steps.meta.outputs.labels }}, ghcr.io/mashumabduljabbar/belajar-ci-cd:latest
+          tags: ${{ steps.meta.outputs.tags }}, ghcr.io/mashumabduljabbar/belajar-ci-cd:latest
