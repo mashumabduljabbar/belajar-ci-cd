@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Endpoint sederhana
 app.get('/', (req, res) => {
-  res.send('Selamat datang di server Node.js!');
+  res.send('Selamat datang di server Node.js UPDATE ke 1!');
 });
 
 // Endpoint lainnya
