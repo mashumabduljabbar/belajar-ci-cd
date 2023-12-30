@@ -1,47 +1,23 @@
-require('dotenv').config()
-
-const express = require("express");
+const express = require('express');
 const app = express();
+const port = 3000;
 
-const bp = require("body-parser");
-app.use(bp.json());
+// Middleware untuk parsing body dari request
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const amqp = require("amqplib");
-const amqpServer = process.env.AMQP_URL;
-var channel, connection;
-
-connectToQueue();
-
-async function connectToQueue() {
-    connection = await amqp.connect(amqpServer);
-    channel = await connection.createChannel();
-    try {
-        const queue = "order";
-        await channel.assertQueue(queue);
-        console.log("Connected to the queue!")
-    } catch (ex) {
-        console.error(ex);
-    }
-}
-
-app.post("/order", (req, res) => {
-    const { order } = req.body;
-    createOrder(order);
-    res.send(order);
+// Endpoint sederhana
+app.get('/', (req, res) => {
+  res.send('Selamat datang di server Node.js!');
 });
 
-const createOrder = async order => {
-    const queue = "order";
-    await channel.sendToQueue(queue, Buffer.from(JSON.stringify(order)));
-    console.log("Order succesfully created!")
-    process.once('SIGINT', async () => { 
-        console.log('got sigint, closing connection');
-        await channel.close();
-        await connection.close(); 
-        process.exit(0);
-    });
-};
+// Endpoint lainnya
+app.get('/api/data', (req, res) => {
+  const data = { message: 'Ini adalah data dari server.' };
+  res.json(data);
+});
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server running at ${process.env.PORT}`);
+// Menjalankan server pada port 3000
+app.listen(port, () => {
+  console.log(`Server berjalan di http://localhost:${port}`);
 });
